@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="score-board.html">See the High Scores!</a>
+    <h1>JavaScript Fundamentals Quiz!</h1>
+    <p class="hide">The following quiz will test your knowledge of some of the fundamentals of JavaScript. Correct answers will let you move forward, but be careful, wrong answers will subtract time! Hit 'Start' below to begin!</p>
+    <button type="button" id="stBtn" class="hide">Start</button>
+    <script>
+        let stBtn = document.getElementById("stBtn");
+        stBtn.addEventListener('click', function(){
+            document.querySelector(".hide").style.display = "none";
+            document.getElementById("stBtn").style.display = "none";
+        })
+
+
+
+    </script> 
+</body>
+</html>
