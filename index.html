@@ -27,11 +27,11 @@
     <div id='questDisplay' class='hide'>
         <p id='actualQuestion'></p>
         <p id='questChoices'></p>
-        <p></p>
+        <p id='wrong'></p>
     </div>
 
-    <div class='hide'>
-        <p>You finished! Here's what you scored:</p>
+    <div id='quizOver' class='hide'>
+        <p>Game finished! Here's what you scored: <span id='score'></span></p>
         <p
             >Enter your initials here:
             <input type="text"/>
@@ -49,7 +49,7 @@
         let questDisplayEl = document.querySelector('#questDisplay')
         let timerEl = document.querySelector('#timer')
         let timer2;
-        let time = 40
+        let time = 60
 
         stBtnEl.addEventListener('click', function(){
             homepageEl.classList.add('hide');
@@ -71,8 +71,10 @@
         let actualQuestionEl = document.querySelector('#actualQuestion')
         let questChoicesEl = document.querySelector('#questChoices')
         let questI = 0
+        let wrongEl = document.querySelector('#wrong')
         
         function nextQuestion(){
+            wrongEl.textContent = ''
             let questToDisplay = questArr[questI]
             actualQuestionEl.textContent = questToDisplay.userQuest
             questChoicesEl.textContent = ''
@@ -81,15 +83,12 @@
                 let newChoiceBtn = document.createElement('button')
                 let newText = questArr[questI].choices[j]
                 newChoiceBtn.textContent = newText
-                newChoiceBtn.addEventListener('click', checkQuestion())
+                newChoiceBtn.onclick = checkQuestion
                 questChoicesEl.appendChild(newChoiceBtn)
-
             }
-
-
         }
 
-        //Questions to plug into nextQuestion() function
+        //Questions to plug into nextQuestion() function above
         const questArr = [
             {   userQuest: "1. What does DOM stand for?",
                 choices: ["Document Object Model", "Digitally Oriented Methods", "Document On Machine", "Digital Object Model"],
@@ -97,8 +96,8 @@
             },
 
             {   userQuest: "2. Do functions need to be called in order to execute their code blocks?",
-                choices: ["Yes", "No"],
-                answer: "Yes" 
+                choices: ["No, never", "Yes, always", "Usually, but not always", "Only in very special cases"],
+                answer: "Yes, always" 
             },
 
             {   userQuest: "3. Arrays can hold which of the following types:",
@@ -112,15 +111,38 @@
             },
             ];
 
-            
+        //Function to check answers
         function checkQuestion(){
-            
+            if (this.textContent === questArr[questI].answer) {
+                questI++
+                if (questI === questArr.length) {
+                    Over()
+                } else {
+                    nextQuestion()
+                }
+            } else {
+                wrongEl.textContent = 'Wrong'
+                if (time <= 10) {
+                    Over()
+                } else {
+                    time -= 10
+                }
+            }
         }
-
+        
+        //Variables and function to end game
+        let quizOverEl = document.querySelector('#quizOver')
+        let scoreEl = document.querySelector('#score')
+        
         function Over(){
-
+            quizOverEl.classList.remove('hide')
+            questDisplayEl.classList.add('hide')
+            scoreEl.textContent = time
+            clearInterval(timer2)
         }
+    
     </script>
+
     <!--<script src="script.js"></script> -->
 </body>
 </html>
