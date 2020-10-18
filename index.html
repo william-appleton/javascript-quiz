@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Quiz!</title>
+    <!-- <link ref="stylesheet" href="./style.css"/> -->
+    <style>
+            .hide {
+        display: none;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Time left: <span>0</span> seconds</p>
+    <p>Time left: <span id='timer'>0</span> seconds</p>
 
     <h1>JavaScript Quiz!</h1>
-    <div>
+    <div id="homepage">
         <p>
             The following quiz will test your knowledge of some of the fundamentals of JavaScript. Correct answers will let you move forward, but be careful, wrong answers will subtract time! Hit 'Start' below to begin!
         </p>
-        <button type="button">Start</button>
+        <button type="button" id="stBtn">Start</button>
     </div>
 
-    <div>
+    <div id='questDisplay' class='hide'>
+        <p></p>
         <p></p>
         <p></p>
     </div>
@@ -31,7 +40,62 @@
     </div>
 
     <a href="score-board.html">See high scores here!</a>
+     
+    <script>
+        //Global variables
+        let questI = 0
+        let time = 40
+
+        // Variables and functions to start quiz
+        let stBtnEl = document.querySelector("#stBtn")
+        let homepageEl = document.querySelector('#homepage')
+        let questDisplayEl = document.querySelector('#questDisplay')
+        let timerEl = document.querySelector('#timer')
+        let timer2;
+    
+
+        stBtnEl.addEventListener('click', function(){
+            homepageEl.classList.add('hide');
+            questDisplayEl.classList.remove('hide');
+            timer2 = setInterval(timeFunction, 1000);
+            timerEl.textContent=time;
+            nextQuestion();
+        })
+
+        function timeFunction(){
+                    time--;
+                    timerEl.textContent = time;
+                    if (time <=0) {
+                        Over(); 
+                    }
+                }
 
 
+
+        const quest = [
+            {   userQuest: "Commonly used data types DO NOT include:",
+                choices: ["strings", "booleans", "alerts", "numbers"],
+                answer: "alerts" 
+            },
+
+            {   userQuest: "Commonly used data types DO NOT include:",
+                choices: ["strings", "booleans", "alerts", "numbers"],
+                answer: "alerts" 
+            },
+
+            {   userQuest: "Commonly used data types DO NOT include:",
+                choices: ["strings", "booleans", "alerts", "numbers"],
+                answer: "alerts" 
+            },
+
+            {   userQuest: "Commonly used data types DO NOT include:",
+                choices: ["strings", "booleans", "alerts", "numbers"],
+                answer: "alerts" 
+            },
+            ];
+
+            let questEl = document.querySelector('#quest')
+    </script>
+    <!--<script src="script.js"></script> -->
 </body>
 </html>
