@@ -25,12 +25,12 @@
     </div>
 
     <div id='questDisplay' class='hide'>
-        <p></p>
-        <p></p>
+        <p id='actualQuestion'></p>
+        <p id='questChoices'></p>
         <p></p>
     </div>
 
-    <div>
+    <div class='hide'>
         <p>You finished! Here's what you scored:</p>
         <p
             >Enter your initials here:
@@ -42,9 +42,6 @@
     <a href="score-board.html">See high scores here!</a>
      
     <script>
-        //Global variables
-        let questI = 0
-        let time = 40
 
         // Variables and functions to start quiz
         let stBtnEl = document.querySelector("#stBtn")
@@ -52,7 +49,7 @@
         let questDisplayEl = document.querySelector('#questDisplay')
         let timerEl = document.querySelector('#timer')
         let timer2;
-    
+        let time = 40
 
         stBtnEl.addEventListener('click', function(){
             homepageEl.classList.add('hide');
@@ -63,38 +60,66 @@
         })
 
         function timeFunction(){
-                    time--;
-                    timerEl.textContent = time;
-                    if (time <=0) {
-                        Over(); 
-                    }
-                }
+            time--;
+            timerEl.textContent = time;
+            if (time <=0) {
+                Over(); 
+            }
+        }
+        
+        //Variables and functions to proceed through questions
+        let actualQuestionEl = document.querySelector('#actualQuestion')
+        let questChoicesEl = document.querySelector('#questChoices')
+        let questI = 0
+        
+        function nextQuestion(){
+            let questToDisplay = questArr[questI]
+            actualQuestionEl.textContent = questToDisplay.userQuest
+            questChoicesEl.textContent = ''
+
+            for (let j = 0; j < 4; j++) {
+                let newChoiceBtn = document.createElement('button')
+                let newText = questArr[questI].choices[j]
+                newChoiceBtn.textContent = newText
+                newChoiceBtn.addEventListener('click', checkQuestion())
+                questChoicesEl.appendChild(newChoiceBtn)
+
+            }
 
 
+        }
 
-        const quest = [
-            {   userQuest: "Commonly used data types DO NOT include:",
-                choices: ["strings", "booleans", "alerts", "numbers"],
-                answer: "alerts" 
+        //Questions to plug into nextQuestion() function
+        const questArr = [
+            {   userQuest: "1. What does DOM stand for?",
+                choices: ["Document Object Model", "Digitally Oriented Methods", "Document On Machine", "Digital Object Model"],
+                answer: "Document Object Model" 
             },
 
-            {   userQuest: "Commonly used data types DO NOT include:",
-                choices: ["strings", "booleans", "alerts", "numbers"],
-                answer: "alerts" 
+            {   userQuest: "2. Do functions need to be called in order to execute their code blocks?",
+                choices: ["Yes", "No"],
+                answer: "Yes" 
             },
 
-            {   userQuest: "Commonly used data types DO NOT include:",
-                choices: ["strings", "booleans", "alerts", "numbers"],
-                answer: "alerts" 
+            {   userQuest: "3. Arrays can hold which of the following types:",
+                choices: ["Numbers", "Strings", "Other Arrays", "All of the Above"],
+                answer: "All of the Above" 
             },
 
-            {   userQuest: "Commonly used data types DO NOT include:",
-                choices: ["strings", "booleans", "alerts", "numbers"],
-                answer: "alerts" 
+            {   userQuest: "4. A method is followed by which of the following",
+                choices: ["Parantheses", "Curly Brackets", "Square Brackets", "Quotation Marks"],
+                answer: "Parantheses" 
             },
             ];
 
-            let questEl = document.querySelector('#quest')
+            
+        function checkQuestion(){
+            
+        }
+
+        function Over(){
+
+        }
     </script>
     <!--<script src="script.js"></script> -->
 </body>
