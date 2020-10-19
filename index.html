@@ -5,12 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Quiz!</title>
-    <!-- <link ref="stylesheet" href="./style.css"/> -->
-    <style>
-            .hide {
-        display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css"/>
 </head>
 
 <body>
@@ -32,117 +27,22 @@
 
     <div id='quizOver' class='hide'>
         <p>Game finished! Here's what you scored: <span id='score'></span></p>
-        <p
-            >Enter your initials here:
-            <input type="text"/>
-            <button>Enter</button>
+        <p>
+            Enter your initials here:
+            <input type="text"  id='playerInt'/>
+            <button id='enter'>Enter</button>
         </p>
     </div>
 
-    <a href="score-board.html">See high scores here!</a>
-     
-    <script>
+    <button type="button" id='startOver' class='hide'>Start Over!</button>
 
-        // Variables and functions to start quiz
-        let stBtnEl = document.querySelector("#stBtn")
-        let homepageEl = document.querySelector('#homepage')
-        let questDisplayEl = document.querySelector('#questDisplay')
-        let timerEl = document.querySelector('#timer')
-        let timer2;
-        let time = 60
+    <hr>
 
-        stBtnEl.addEventListener('click', function(){
-            homepageEl.classList.add('hide');
-            questDisplayEl.classList.remove('hide');
-            timer2 = setInterval(timeFunction, 1000);
-            timerEl.textContent=time;
-            nextQuestion();
-        })
+    <div>
+        <h2>High Scores:</h2>
+        <div id='highScores'></div>
+    </div> 
 
-        function timeFunction(){
-            time--;
-            timerEl.textContent = time;
-            if (time <=0) {
-                Over(); 
-            }
-        }
-        
-        //Variables and functions to proceed through questions
-        let actualQuestionEl = document.querySelector('#actualQuestion')
-        let questChoicesEl = document.querySelector('#questChoices')
-        let questI = 0
-        let wrongEl = document.querySelector('#wrong')
-        
-        function nextQuestion(){
-            wrongEl.textContent = ''
-            let questToDisplay = questArr[questI]
-            actualQuestionEl.textContent = questToDisplay.userQuest
-            questChoicesEl.textContent = ''
-
-            for (let j = 0; j < 4; j++) {
-                let newChoiceBtn = document.createElement('button')
-                let newText = questArr[questI].choices[j]
-                newChoiceBtn.textContent = newText
-                newChoiceBtn.onclick = checkQuestion
-                questChoicesEl.appendChild(newChoiceBtn)
-            }
-        }
-
-        //Questions to plug into nextQuestion() function above
-        const questArr = [
-            {   userQuest: "1. What does DOM stand for?",
-                choices: ["Document Object Model", "Digitally Oriented Methods", "Document On Machine", "Digital Object Model"],
-                answer: "Document Object Model" 
-            },
-
-            {   userQuest: "2. Do functions need to be called in order to execute their code blocks?",
-                choices: ["No, never", "Yes, always", "Usually, but not always", "Only in very special cases"],
-                answer: "Yes, always" 
-            },
-
-            {   userQuest: "3. Arrays can hold which of the following types:",
-                choices: ["Numbers", "Strings", "Other Arrays", "All of the Above"],
-                answer: "All of the Above" 
-            },
-
-            {   userQuest: "4. A method is followed by which of the following",
-                choices: ["Parantheses", "Curly Brackets", "Square Brackets", "Quotation Marks"],
-                answer: "Parantheses" 
-            },
-            ];
-
-        //Function to check answers
-        function checkQuestion(){
-            if (this.textContent === questArr[questI].answer) {
-                questI++
-                if (questI === questArr.length) {
-                    Over()
-                } else {
-                    nextQuestion()
-                }
-            } else {
-                wrongEl.textContent = 'Wrong'
-                if (time <= 10) {
-                    Over()
-                } else {
-                    time -= 10
-                }
-            }
-        }
-        
-        //Variables and function to end game
-        let quizOverEl = document.querySelector('#quizOver')
-        let scoreEl = document.querySelector('#score')
-        
-        function Over(){
-            quizOverEl.classList.remove('hide')
-            questDisplayEl.classList.add('hide')
-            scoreEl.textContent = time
-            clearInterval(timer2)
-        }
-    
-    </script>
-
-    <!--<script src="script.js"></script> -->
+    <script src="./script.js"></script>
 </body>
 </html>
