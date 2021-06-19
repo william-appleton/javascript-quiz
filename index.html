@@ -5,48 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Quiz!</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css"/>
 </head>
 
 <body>
-    <div class='padding border top-margin'>
-        <p>Time left: <span id='timer'>0</span> seconds</p>
+    <div class="body1">
+        <div class="text-div">
+            <div class='padding border'>
+                <p>Time left: <span id='timer' class='seconds'>0</span> seconds</p>
+            </div>
+        
+            <div class='padding border'>
+                <h1>JavaScript Quiz!</h1>
+            </div>
+        
+            <div id="homepage" class='padding'>
+                <p>
+                    The following quiz will test your knowledge of some of the fundamentals of JavaScript. Correct answers will let you move forward, but be careful, wrong answers will subtract time! Hit 'Start' below to begin!
+                </p>
+                <button type="button" id="stBtn" class='padding btn'>Start</button>
+            </div>
+        
+            <div id='questDisplay' class='hide padding border'>
+                <h3 id='actualQuestion'></h3>
+                <p id='questChoices' class='questions'></p>
+                <p id='wrong' class='wrong'></p>
+            </div>
+        
+            <div id='quizOver' class='hide padding border'>
+                <p>Game finished! Here's what you scored: <span id='score'></span></p>
+                <p>
+                    Enter your initials here:
+                    <input class='input-box' type="text"  id='playerInt'/>
+                    <button id='enter' class='btn'>Enter</button>
+                </p>
+            </div>
+        
+            <button type="button" id='startOver' class='hide padding btn start-over'>Start Over!</button>
+        
+            <div class='padding border'>
+                <h2>High Scores:</h2>
+                <div class='padding' id='highScores'></div>
+            </div>   
+        </div>
     </div>
-
-    <div class='padding border'>
-        <h1>JavaScript Quiz!</h1>
+    <div class="body2">
     </div>
-
-    <div id="homepage" class='padding'>
-        <p>
-            The following quiz will test your knowledge of some of the fundamentals of JavaScript. Correct answers will let you move forward, but be careful, wrong answers will subtract time! Hit 'Start' below to begin!
-        </p>
-        <button type="button" id="stBtn" class='padding btn'>Start</button>
-    </div>
-
-    <div id='questDisplay' class='hide padding border'>
-        <h3 id='actualQuestion'></h3>
-        <p id='questChoices'></p>
-        <p id='wrong' class='wrong'></p>
-    </div>
-
-    <div id='quizOver' class='hide padding border'>
-        <p>Game finished! Here's what you scored: <span id='score'></span></p>
-        <p>
-            Enter your initials here:
-            <input type="text"  id='playerInt'/>
-            <button id='enter' class='btn'>Enter</button>
-        </p>
-    </div>
-
-    <button type="button" id='startOver' class='hide padding btn'>Start Over!</button>
-
-    <hr>
-
-    <div class='padding border'>
-        <h2>High Scores:</h2>
-        <div class='padding' id='highScores'></div>
-    </div> 
+    
+    
 
     <script src="./script.js"></script>
 </body>

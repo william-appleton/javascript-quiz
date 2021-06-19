@@ -76,7 +76,7 @@ function checkQuestion(){
             nextQuestion()
         }
     } else {
-        wrongEl.textContent = 'Wrong'
+        wrongEl.textContent = 'Wrong, try again!'
         if (time <= 10) {
             time = 0
             timerEl.textContent = 0
